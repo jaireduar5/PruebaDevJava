@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+>
+	
+	
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Compatible" />
+</h:head>
+<h:body style="background-color:#CACFD2">
+	<h2 style="text-align: center;">
+    <h:outputText value="Lista clientes" />
+</h2>
+
+
+	<h:form>
+	<h:commandButton action="#{clienteBean.nuevo()}" value="Nuevo Cliente"> </h:commandButton>
+	<p:dataTable value="#{clienteBean.obtenerClientes()}" var="cliente"
+			paginator="true" rows="10" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+			pageLinks="10" rowsPerPageTemplate="5,10,15">
+
+			<p:column headerText="Id">
+				<h:outputText value="#{cliente.idClientes}" />
+			</p:column>
+			<p:column headerText="Nombres">
+				<h:outputText value="#{cliente.nombres}" />
+			</p:column>
+			<p:column headerText="Apellidos">
+				<h:outputText value="#{cliente.apellido}" />
+			</p:column>
+			<p:column headerText="Direccion">
+				<h:outputText value="#{cliente.direccion}" />
+			</p:column>
+			<p:column headerText="Email">
+				<h:outputText value="#{cliente.email}" />
+			</p:column>
+			<p:column headerText="Telefono">
+				<h:outputText value="#{cliente.telefono}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">F. Registro</f:facet>
+				<h:outputText value="#{cliente.fregistro}"></h:outputText>
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">F. Actualizar</f:facet>
+				<h:outputText value="#{cliente.factualizacion}"></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:commandButton action="#{clienteBean.editar(cliente.idClientes)}" value="Editar"></h:commandButton>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Eliminar</f:facet>
+				<h:commandButton action="#{clienteBean.eliminar(cliente.idClientes)}" value="Eliminar"></h:commandButton>
+			</p:column>
+			
+</p:dataTable>
+</h:form>
+	<style>
+  .corner-text {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+    padding: 5px;
+    background-color: #f0f0f0;
+  }
+</style>
+	<h6 class="corner-text">jair eduardo corral</h6>
+</h:body>
+</html>
